@@ -1,7 +1,11 @@
 from faker import Faker
 import random
 
-fake = Faker()
+# Solicita ao usuário a nacionalidade desejada
+nacionalidade = input("Escolha a nacionalidade (padrão: pt_BR - Brasil): ")
+nacionalidade = nacionalidade.strip() or 'pt_BR'  # Define o padrão como pt_BR se nada for inserido
+
+fake = Faker(nacionalidade)  # Configura a nacionalidade
 
 # Pedir ao usuário a idade mínima e máxima desejada
 idade_minima = int(input("Digite a idade mínima desejada: "))
@@ -18,7 +22,7 @@ for _ in range(quantidade_dados):
     nome_ficticio = fake.name()
     idade_aleatoria = random.randint(idade_minima, idade_maxima)
     numero_telefone_ficticio = fake.random_int(31000000000, 31999999999)
-    
+
     # Adicionar os dados à lista
     log.append({
         "Nome": nome_ficticio,
