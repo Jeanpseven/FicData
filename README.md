@@ -1,0 +1,4 @@
+# FicData
+Gerador de nome,idade e número (com inputs)
+
+Random Data GeneratorThis Python script generates random data, including fictitious names, ages, and phone numbers. It allows users to specify the age range and the number of data entries to be generated.How to UseRequirements:Python 3Faker library (install using pip install Faker)Running the Script:Run the script in your terminal or command prompt.Input:You will be prompted to enter the minimum and maximum age range you desire.Enter the number of data entries you want to generate.Output:The script will generate random data entries with the specified age range and phone numbers.Each data entry includes:Fictitious NameRandom Age within the specified rangePhone Number starting with "31"Results:The generated data will be displayed on the screen.ExampleHere's an example of how to run the script:$ python random_data_generator.py
