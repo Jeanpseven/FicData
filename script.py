@@ -1,38 +1,34 @@
 from faker import Faker
 import random
 
-# Solicita ao usuário a nacionalidade desejada
-nacionalidade = input("Escolha a nacionalidade (padrão: pt_BR - Brasil): ")
-nacionalidade = nacionalidade.strip() or 'pt_BR'  # Define o padrão como pt_BR se nada for inserido
+fake = Faker()
 
-fake = Faker(nacionalidade)  # Configura a nacionalidade
+# Lista de nacionalidades disponíveis
+nacionalidades = ["pt_BR", "en_US", "es_ES", "fr_FR"]
 
-# Pedir ao usuário a idade mínima e máxima desejada
-idade_minima = int(input("Digite a idade mínima desejada: "))
-idade_maxima = int(input("Digite a idade máxima desejada: "))
+# Pedir ao usuário para escolher uma nacionalidade
+print("Escolha uma nacionalidade disponível:")
+for i, nacionalidade in enumerate(nacionalidades, 1):
+    print(f"{i}. {nacionalidade}")
+print("Digite o número correspondente à nacionalidade desejada ou 'list' para ver a lista:")
 
-# Pedir ao usuário o número de dados a serem gerados
-quantidade_dados = int(input("Digite o número de dados a serem gerados: "))
+while True:
+    escolha = input()
+    if escolha == 'list':
+        for i, nacionalidade in enumerate(nacionalidades, 1):
+            print(f"{i}. {nacionalidade}")
+        print("Digite o número correspondente à nacionalidade desejada:")
+    elif escolha.isnumeric():
+        escolha = int(escolha)
+        if 1 <= escolha <= len(nacionalidades):
+            nacionalidade_escolhida = nacionalidades[escolha - 1]
+            break
+        else:
+            print("Número fora do intervalo. Digite um número válido.")
+    else:
+        print("Entrada inválida. Digite 'list' ou o número correspondente à nacionalidade.")
 
-# Inicializar uma lista para armazenar os dados gerados
-log = []
+# Resto do seu código
+fake = Faker(nacionalidade_escolhida)
 
-# Gerar os dados solicitados e armazená-los na lista
-for _ in range(quantidade_dados):
-    nome_ficticio = fake.name()
-    idade_aleatoria = random.randint(idade_minima, idade_maxima)
-    numero_telefone_ficticio = fake.random_int(31000000000, 31999999999)
-
-    # Adicionar os dados à lista
-    log.append({
-        "Nome": nome_ficticio,
-        "Idade": idade_aleatoria,
-        "Número de Telefone": numero_telefone_ficticio
-    })
-
-# Imprimir os dados gerados
-for dados in log:
-    print(f"Nome: {dados['Nome']}")
-    print(f"Idade: {dados['Idade']} anos")
-    print(f"Número de Telefone: {dados['Número de Telefone']}")
-    print("\n")
+# Agora você pode continuar com o restante do seu código usando a nacionalidade escolhida
